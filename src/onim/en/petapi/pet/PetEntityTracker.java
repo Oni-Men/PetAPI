@@ -23,7 +23,7 @@ import onim.en.petapi.pet.exception.EntityAlreadyPetException;
 public class PetEntityTracker implements Listener {
 
   private static Map<Entity, PetData> pets = Maps.newHashMap();
-  private static Map<PetData, Entity> datas = Maps.newHashMap();
+  private static Map<PetData, Entity> entities = Maps.newHashMap();
 
   /**
    * スポーンしている Entity と Pet を関連付ける
@@ -38,7 +38,7 @@ public class PetEntityTracker implements Listener {
     }
 
     pets.put(entity, data);
-    datas.put(data, entity);
+    entities.put(data, entity);
   }
 
   /**
@@ -49,7 +49,7 @@ public class PetEntityTracker implements Listener {
   public static void unlink(Entity entity) {
     PetData data = pets.remove(entity);
     if (data != null) {
-      datas.remove(data);
+      entities.remove(data);
     }
   }
 
@@ -59,7 +59,7 @@ public class PetEntityTracker implements Listener {
    * @param data
    */
   public static void unlink(PetData data) {
-    Entity entity = datas.remove(data);
+    Entity entity = entities.remove(data);
     if (entity != null) {
       pets.remove(entity);
     }
@@ -83,7 +83,7 @@ public class PetEntityTracker implements Listener {
    */
   @Nullable
   public static Entity get(PetData petData) {
-    return datas.get(petData);
+    return entities.get(petData);
   }
 
   public static void despawn(PetData data) {
@@ -129,9 +129,28 @@ public class PetEntityTracker implements Listener {
    */
   public static void unlinkAll() {
     pets.clear();
-    datas.clear();
+    entities.clear();
   }
 
+  /**
+   * 指定した Entity が既に関連付けられているとき、true
+   * 
+   * @param entity
+   * @return
+   */
+  public static boolean isLinked(Entity entity) {
+    return pets.containsKey(entity);
+  }
+  
+  /**
+   * 指定した PetData が既に関連付けられているとき、true
+   * @param data
+   * @return
+   */
+  public static boolean isLinked(PetData data) {
+    return entities.containsKey(data);
+  }
+  
   @EventHandler
   public void onPlayerQuit(PlayerQuitEvent event) {
     PetOwner owner = PetOwnerFactory.get(event.getPlayer());

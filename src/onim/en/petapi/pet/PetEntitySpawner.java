@@ -21,6 +21,10 @@ import onim.en.petapi.pet.exception.EntityAlreadyPetException;
 public class PetEntitySpawner {
 
   public static void spawn(PetData data) {
+    if (PetEntityTracker.isLinked(data)) {
+      return;
+    }
+    
     Player player = Bukkit.getPlayer(data.getOwnerId());
     
     if (player == null) {
@@ -33,7 +37,6 @@ public class PetEntitySpawner {
     if (!data.getType().getAllowedWorlds().contains(world.getName())) {
       return;
     }
-
     
     Entity entity = world.spawnEntity(loc, data.getType().getType());
 

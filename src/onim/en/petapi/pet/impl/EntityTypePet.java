@@ -28,6 +28,4 @@ public class EntityTypePet implements Pet{
     return 0;
   }
 
-  
-  
 }

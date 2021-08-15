@@ -25,7 +25,7 @@ public class PetCommand implements CommandExecutor {
       return false;
     }
 
-    Player player =  (Player) sender;
+    Player player = (Player) sender;
     if (args.length < 2) {
       return false;
     }
@@ -34,28 +34,28 @@ public class PetCommand implements CommandExecutor {
     String petName = args[1];
 
     Pet pet = PetManager.get(petType);
-    
+
     if (pet == null) {
       player.sendMessage(ChatColor.RED + petType + "は存在しない種類のペットです");
       return true;
     }
-    
+
     PetOwner owner = PetOwnerFactory.get(player);
     Collection<PetData> datas = PetDataManager.get(owner);
     PetData data = null;
-    
+
     for (PetData d : datas) {
       if (d.getName().equals(petName)) {
         data = d;
         break;
       }
     }
-    
+
     if (data == null) {
-     data = new SimplePetData(player.getUniqueId(), petName, pet);
-     PetDataManager.add(data);
+      data = new SimplePetData(player.getUniqueId(), petName, pet);
+      PetDataManager.add(data);
     }
-    
+
     PetEntitySpawner.spawn(data);
     return true;
   }
