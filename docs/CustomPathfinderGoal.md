@@ -73,6 +73,10 @@ public boolean a() {
   //should start
 }
 
+public boolean b() {
+  //perhaps should continue pathfinding
+}
+
 public void c() {
   //on start pathfinding
 }
