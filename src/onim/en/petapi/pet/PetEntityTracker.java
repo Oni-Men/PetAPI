@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Nullable;
 
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftChicken;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -14,6 +15,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import com.google.common.collect.Maps;
 
+import net.minecraft.server.v1_8_R3.EntityChicken;
 import onim.en.petapi.owner.PetOwner;
 import onim.en.petapi.owner.PetOwnerFactory;
 import onim.en.petapi.pet.data.PetData;
@@ -39,6 +41,8 @@ public class PetEntityTracker implements Listener {
 
     pets.put(entity, data);
     entities.put(data, entity);
+
+    initialize(entity);
   }
 
   /**
@@ -51,6 +55,8 @@ public class PetEntityTracker implements Listener {
     if (data != null) {
       entities.remove(data);
     }
+    
+    finalize(entity);
   }
 
   /**
@@ -63,8 +69,35 @@ public class PetEntityTracker implements Listener {
     if (entity != null) {
       pets.remove(entity);
     }
+    
+    finalize(entity);
   }
 
+  /**
+   * 関連付けた Entity の動作を変更する
+   * 
+   * @param entity
+   */
+  public static void initialize(Entity entity) {
+    
+    //ニワトリが卵を産まないようにする
+    if (entity instanceof CraftChicken) {
+      ((CraftChicken) entity).getHandle().bs = Integer.MAX_VALUE;
+    }
+  }
+  
+  /**
+   * 関連付けを解除した後に、Entity をバニラの動作に戻す
+   * 
+   * @param entity
+   */
+  public static void finalize(Entity entity) {
+    if (entity instanceof CraftChicken) {
+      EntityChicken handle = ((CraftChicken) entity).getHandle();
+      handle.bs = handle.bc().nextInt(6000) + 6000;
+    }
+  }
+  
   /**
    * Entity に関連づけられた PetData を取得する
    * 
@@ -171,4 +204,5 @@ public class PetEntityTracker implements Listener {
     event.getDrops().clear();
     unlink(event.getEntity());
   }
+
 }

@@ -10,11 +10,13 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
+import net.minecraft.server.v1_8_R3.EntityCreature;
 import net.minecraft.server.v1_8_R3.EntityInsentient;
 import net.minecraft.server.v1_8_R3.PathfinderGoalFloat;
 import net.minecraft.server.v1_8_R3.PathfinderGoalSelector;
 import onim.en.petapi.ai.PetAIFollowOwner;
 import onim.en.petapi.ai.PetAIFoodie;
+import onim.en.petapi.ai.PetAIRandomSkip;
 import onim.en.petapi.pet.data.PetData;
 import onim.en.petapi.pet.exception.EntityAlreadyPetException;
 
@@ -62,6 +64,10 @@ public class PetEntitySpawner {
       insentient.goalSelector.a(0, new PathfinderGoalFloat(insentient));
       insentient.goalSelector.a(1, new PetAIFollowOwner(insentient, player, 1));
       insentient.goalSelector.a(2, new PetAIFoodie(insentient, 9F, 1.1F));
+      
+      if (handle instanceof EntityCreature) {
+        insentient.goalSelector.a(3, new PetAIRandomSkip((EntityCreature) insentient, 3.0));
+      }
     }
 
   }

@@ -13,7 +13,7 @@ public class PetAIFollowOwner extends PathfinderGoal {
   private Entity owner;
 
   private double speed;
-  private int d = 0;
+  private int count = 0;
 
   public PetAIFollowOwner(EntityInsentient entity, Entity owner, double speed) {
     this.entity = entity;
@@ -24,7 +24,6 @@ public class PetAIFollowOwner extends PathfinderGoal {
   public PetAIFollowOwner(EntityInsentient entity, Player player, double speed) {
     this(entity, ((CraftPlayer) player).getHandle(), speed);
   }
-
 
   public boolean a() {
     return this.b();
@@ -37,12 +36,12 @@ public class PetAIFollowOwner extends PathfinderGoal {
     }
 
     double distance = this.entity.h(this.owner);
-    return distance >= 9D;
+    return distance >= 16.0;
   }
 
 
   public void c() {
-    this.d = 0;
+    this.count = 0;
   }
 
   @Override
@@ -52,8 +51,8 @@ public class PetAIFollowOwner extends PathfinderGoal {
 
   @Override
   public void e() {
-    if (--this.d <= 0) {
-      this.d = 10;
+    if (--this.count <= 0) {
+      this.count = 10;
       this.entity.getNavigation().a(owner, this.speed);
     }
   }
