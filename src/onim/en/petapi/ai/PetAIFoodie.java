@@ -3,14 +3,10 @@ package onim.en.petapi.ai;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 
-import net.minecraft.server.v1_8_R3.ChatComponentText;
 import net.minecraft.server.v1_8_R3.EntityHuman;
 import net.minecraft.server.v1_8_R3.EntityInsentient;
-import net.minecraft.server.v1_8_R3.EntityPlayer;
 import net.minecraft.server.v1_8_R3.ItemStack;
 import net.minecraft.server.v1_8_R3.Navigation;
-import net.minecraft.server.v1_8_R3.PacketPlayOutTitle;
-import net.minecraft.server.v1_8_R3.PacketPlayOutTitle.EnumTitleAction;
 import net.minecraft.server.v1_8_R3.PathfinderGoal;
 import net.minecraft.server.v1_8_R3.World;
 
@@ -30,14 +26,6 @@ public class PetAIFoodie extends PathfinderGoal {
     this.entity = entity;
     this.world = entity.world;
     this.range = range;
-  }
-
-  private void sendTitle(EntityHuman player, String text) {
-    PacketPlayOutTitle packet = new PacketPlayOutTitle(EnumTitleAction.TITLE, new ChatComponentText(text));
-
-    if (player instanceof EntityPlayer) {
-      ((EntityPlayer) player).playerConnection.sendPacket(packet);
-    }
   }
 
   @Override
@@ -60,7 +48,6 @@ public class PetAIFoodie extends PathfinderGoal {
       return false;
     }
     
-    sendTitle(this.player, "a");
     return this.isPlayerHoldingFood(player);
   }
 
@@ -71,14 +58,12 @@ public class PetAIFoodie extends PathfinderGoal {
 
   @Override
   public void c() {
-    sendTitle(player, "c");
     this.m = ((Navigation) this.entity.getNavigation()).e();
     ((Navigation) this.entity.getNavigation()).a(false);
   }
 
   @Override
   public void e() {
-    sendTitle(player, "e");
     this.entity.getControllerLook().a(player, 30F, this.entity.bQ());
     if (this.entity.h(this.player) < 6.25D) {
       this.entity.getNavigation().n();
@@ -90,7 +75,6 @@ public class PetAIFoodie extends PathfinderGoal {
 
   @Override
   public void d() {
-    sendTitle(player, "d");
     this.count = 100;
     this.player = null;
     ((Navigation) this.entity.getNavigation()).a(this.m);
