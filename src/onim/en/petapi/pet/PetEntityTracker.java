@@ -141,16 +141,17 @@ public class PetEntityTracker implements Listener {
   public static boolean isLinked(Entity entity) {
     return pets.containsKey(entity);
   }
-  
+
   /**
    * 指定した PetData が既に関連付けられているとき、true
+   * 
    * @param data
    * @return
    */
   public static boolean isLinked(PetData data) {
     return entities.containsKey(data);
   }
-  
+
   @EventHandler
   public void onPlayerQuit(PlayerQuitEvent event) {
     PetOwner owner = PetOwnerFactory.get(event.getPlayer());

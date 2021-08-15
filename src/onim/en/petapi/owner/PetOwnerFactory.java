@@ -31,7 +31,7 @@ public class PetOwnerFactory {
   public static PetOwner get(String name) {
     return get(Bukkit.getPlayer(name));
   }
-  
+
   @Nonnull
   public static PetOwner get(Player player) {
     return get(player.getUniqueId());

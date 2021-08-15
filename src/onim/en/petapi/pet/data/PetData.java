@@ -8,7 +8,7 @@ import onim.en.petapi.pet.Pet;
 public interface PetData {
 
   public UUID getOwnerId();
-  
+
   public PetOwner getOwner();
 
   public String getName();

@@ -22,25 +22,25 @@ public interface PetOwner {
    */
   public Collection<PetData> getPets();
 
-//  /**
-//   * Ownerの保持しているペットからスポーンさせる
-//   * 
-//   * @param pet
-//   */
-//  public void spawn(PetData pet);
-//
-//  /**
-//   * Ownerの保持しているペットからデスポーンさせる
-//   * 
-//   * @param pet
-//   */
-//  public void despawn(PetData pet);
-//
-//  /**
-//   * Ownerの保持しているペットを全てデスポーンさせる
-//   * 
-//   */
-//  public void despawnAll();
+  // /**
+  // * Ownerの保持しているペットからスポーンさせる
+  // *
+  // * @param pet
+  // */
+  // public void spawn(PetData pet);
+  //
+  // /**
+  // * Ownerの保持しているペットからデスポーンさせる
+  // *
+  // * @param pet
+  // */
+  // public void despawn(PetData pet);
+  //
+  // /**
+  // * Ownerの保持しているペットを全てデスポーンさせる
+  // *
+  // */
+  // public void despawnAll();
 
   /**
    * OwnerのUUIDを返す

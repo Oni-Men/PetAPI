@@ -8,6 +8,6 @@ public class PetAIRandomSkip extends PathfinderGoal {
   public boolean a() {
     return false;
   }
-  
-  
+
+
 }

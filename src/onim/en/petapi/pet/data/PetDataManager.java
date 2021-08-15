@@ -30,13 +30,13 @@ public class PetDataManager {
       datas.remove(ownerId, data);
     }
   }
-  
+
   public static Collection<PetData> get(PetOwner owner) {
-     return datas.get(owner.getId());
+    return datas.get(owner.getId());
   }
-  
+
   public static UUID get(PetData data) {
     return owners.get(data);
   }
-  
+
 }

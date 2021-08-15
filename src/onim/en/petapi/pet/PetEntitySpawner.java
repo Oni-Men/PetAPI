@@ -24,9 +24,9 @@ public class PetEntitySpawner {
     if (PetEntityTracker.isLinked(data)) {
       return;
     }
-    
+
     Player player = Bukkit.getPlayer(data.getOwnerId());
-    
+
     if (player == null) {
       return;
     }
@@ -37,7 +37,7 @@ public class PetEntitySpawner {
     if (!data.getType().getAllowedWorlds().contains(world.getName())) {
       return;
     }
-    
+
     Entity entity = world.spawnEntity(loc, data.getType().getType());
 
     try {
@@ -46,13 +46,13 @@ public class PetEntitySpawner {
       entity.remove();
       return;
     }
-    
+
     entity.setCustomNameVisible(true);
     entity.setCustomName(ChatColor.BOLD + data.getName());
 
     net.minecraft.server.v1_8_R3.Entity handle = ((CraftEntity) entity).getHandle();
     setInvulnerable(handle, true);
-    
+
     if (handle instanceof EntityInsentient) {
       EntityInsentient insentient = (EntityInsentient) handle;
 
@@ -65,15 +65,15 @@ public class PetEntitySpawner {
     }
 
   }
-  
-  public static void setInvulnerable(net.minecraft.server.v1_8_R3.Entity  entity, boolean isInvulnerable) {
-      try {
-        Field field = net.minecraft.server.v1_8_R3.Entity.class.getDeclaredField("invulnerable");
-        field.setAccessible(true);
-        field.setBoolean(entity, isInvulnerable);
-      } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
-        e.printStackTrace();
-      }
+
+  public static void setInvulnerable(net.minecraft.server.v1_8_R3.Entity entity, boolean isInvulnerable) {
+    try {
+      Field field = net.minecraft.server.v1_8_R3.Entity.class.getDeclaredField("invulnerable");
+      field.setAccessible(true);
+      field.setBoolean(entity, isInvulnerable);
+    } catch (NoSuchFieldException | SecurityException | IllegalArgumentException | IllegalAccessException e) {
+      e.printStackTrace();
+    }
   }
 
 }

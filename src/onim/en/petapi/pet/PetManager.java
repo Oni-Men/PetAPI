@@ -11,7 +11,7 @@ public class PetManager {
   public static void add(Pet pet) {
     pets.put(pet.getId(), pet);
   }
-  
+
   public static Pet get(String id) {
     return pets.get(id);
   }
