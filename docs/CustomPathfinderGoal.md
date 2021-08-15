@@ -1,4 +1,4 @@
-# あなただけの Pathfindergoals​ を作る
+# Pathfindergoals​ を自作する
 
 [このページ](https://www.spigotmc.org/threads/tutorial-creating-custom-entities-with-pathfindergoals.18519/)の翻訳です。
 
