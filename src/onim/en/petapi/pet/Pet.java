@@ -1,13 +1,14 @@
 package onim.en.petapi.pet;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.entity.EntityType;
 
+import onim.en.petapi.PetAPI;
+
 public interface Pet {
 
-  static final List<String> OVER_WORLD = Arrays.asList("thelow");
+  static List<String> CONFIG_WORLDS = null;
 
   public String getId();
 
@@ -18,6 +19,6 @@ public interface Pet {
   public long getPrice();
 
   public default List<String> getAllowedWorlds() {
-    return OVER_WORLD;
+    return PetAPI.getWorldAllowedByConfig();
   }
 }
