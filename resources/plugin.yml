@@ -1,0 +1,6 @@
+name: TheLowPets
+main: onim.en.petapi.PetCore
+version: 1.0
+commands:
+  petapi:
+    permissions: jp.thelow.player.petapi
