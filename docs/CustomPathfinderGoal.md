@@ -1,5 +1,7 @@
 # あなただけの Pathfindergoals​ を作る
 
+[このページ](https://www.spigotmc.org/threads/tutorial-creating-custom-entities-with-pathfindergoals.18519/)の翻訳です。
+
 Pathfindergoals はあなたの Entity の AI を操作します。
 
 Pathfindergoal を作成するには、 次のようなクラスを作ってください:​
