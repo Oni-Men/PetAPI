@@ -1,5 +1,5 @@
 name: TheLowPets
-main: onim.en.petapi.PetCore
+main: onim.en.petapi.PetAPI
 version: 1.0
 commands:
   petapi:
