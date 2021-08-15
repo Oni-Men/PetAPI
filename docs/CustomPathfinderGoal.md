@@ -65,4 +65,27 @@ public void c(){
 
 ```
 
+難読化されたメソッドと、各メソッドの意味について
+
+```java
+
+public boolean a() {
+  //should start
+}
+
+public void c() {
+  //on start pathfinding
+}
+
+public void e() {
+  //run every single tick while this goal is pathfinding
+}
+
+public void d() {
+  //on exit pathfinding
+}
+
+
+```
+
 `Location`と`Entity`が 20 ブロック以上離れていないことを確認してください。（詳しくありませんが、恐らく 20 ブロック）。もしそれ以上離れていると`pathEntity`フィールドが null になります。
