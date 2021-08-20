@@ -37,7 +37,7 @@ public class PetAIRandomSkip extends PathfinderGoal {
           }
       }
 
-      Vec3D pos = RandomPositionGenerator.a(this.entity, 10, 7);
+      Vec3D pos = RandomPositionGenerator.a(this.entity, 5, 7);
       if (pos == null) {
           return false;
       } else {

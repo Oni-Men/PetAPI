@@ -36,7 +36,7 @@ public class PetAIFollowOwner extends PathfinderGoal {
     }
 
     double distance = this.entity.h(this.owner);
-    return distance >= 16.0;
+    return distance > 9D;
   }
 
 

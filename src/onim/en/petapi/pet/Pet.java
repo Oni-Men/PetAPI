@@ -3,7 +3,9 @@ package onim.en.petapi.pet;
 import java.util.List;
 
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 
+import net.minecraft.server.v1_8_R3.EntityInsentient;
 import onim.en.petapi.PetAPI;
 
 public interface Pet {
@@ -16,8 +18,8 @@ public interface Pet {
 
   public float getSpeed();
 
-  public long getPrice();
-
+  public void initPathfinderGoals(EntityInsentient insentient, Player player);
+  
   public default List<String> getAllowedWorlds() {
     return PetAPI.getWorldAllowedByConfig();
   }

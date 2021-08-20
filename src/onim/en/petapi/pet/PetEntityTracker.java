@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.annotation.Nullable;
 
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftChicken;
+import org.bukkit.craftbukkit.v1_8_R3.entity.CraftEntity;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -80,10 +81,16 @@ public class PetEntityTracker implements Listener {
    */
   public static void initialize(Entity entity) {
     
+    if (entity instanceof CraftEntity) {
+      net.minecraft.server.v1_8_R3.Entity handle = ((CraftEntity) entity).getHandle();
+      handle.maxFireTicks = 0;
+    }
+
     //ニワトリが卵を産まないようにする
     if (entity instanceof CraftChicken) {
       ((CraftChicken) entity).getHandle().bs = Integer.MAX_VALUE;
     }
+    
   }
   
   /**
@@ -92,6 +99,12 @@ public class PetEntityTracker implements Listener {
    * @param entity
    */
   public static void finalize(Entity entity) {
+    
+    if (entity instanceof CraftEntity) {
+      net.minecraft.server.v1_8_R3.Entity handle = ((CraftEntity) entity).getHandle();
+      handle.maxFireTicks = 1;
+    }
+    
     if (entity instanceof CraftChicken) {
       EntityChicken handle = ((CraftChicken) entity).getHandle();
       handle.bs = handle.bc().nextInt(6000) + 6000;
